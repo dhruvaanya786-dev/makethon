@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnX | Neural Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#050810] text-white overflow-x-hidden">
+
+    <div id="intro-overlay">
+        <canvas id="starfield"></canvas>
+        <div class="relative z-50 flex flex-col items-center justify-center">
+            <div class="intro-lx text-blue-600 font-black">LX</div>
+            <p id="welcome-msg" class="opacity-0">WELCOME TO CODING WORLD</p>
+        </div>
+    </div>
+
+    <aside id="sidebar" class="sidebar">
+        <div onclick="openProfile('User', '14', '24,500')" class="profile-trigger mb-10">JD</div>
+        <nav class="flex flex-col gap-10 items-center">
+            <div class="nav-icon active" onclick="closeOverlays()"><i data-lucide="home"></i><span class="nav-label">Home</span></div>
+            <div class="nav-icon" onclick="triggerPractice()"><i data-lucide="code-2"></i><span class="nav-label">Practice</span></div>
+            <div class="nav-icon" onclick="openMentors()"><i data-lucide="users-round"></i><span class="nav-label">Mentors</span></div>
+            <div class="nav-icon" onclick="openLeaderboard()"><i data-lucide="trophy"></i><span class="nav-label">Ranks</span></div>
+        </nav>
+    </aside>
+
+    <main id="main-content">
+        <section id="hero" class="h-screen flex items-center px-12 lg:px-24">
+            <div class="grid lg:grid-cols-2 w-full items-center">
+                <div class="hero-text">
+                    <h1 class="text-[120px] font-black italic tracking-tighter leading-none text-blue-600">LEARNX</h1>
+                    <p class="text-gray-400 max-w-sm text-lg border-l-2 border-blue-500 pl-4 mt-6">Neural-link your logic to world-class mentors and 3D animated challenges.</p>
+                </div>
+                <div class="hidden lg:flex justify-center relative">
+                    <div class="robot-glow"></div>
+                    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" class="robot-float w-[400px] z-10">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-32 px-12 lg:px-24 bg-[#080c16]">
+            <h2 class="text-4xl font-black mb-16 italic tracking-[10px] text-center uppercase">System Capabilities</h2>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="glass-panel">
+                    <h3 class="font-bold text-xl text-blue-500 mb-2">Neural Feedback</h3>
+                    <p class="text-sm text-gray-500">AI analysis of code logic protocols.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3 class="font-bold text-xl text-purple-500 mb-2">Elite Mentors</h3>
+                    <p class="text-sm text-gray-500">Direct access to industry leads.</p>
+                </div>
+                <div class="glass-panel">
+                    <h3 class="font-bold text-xl text-orange-500 mb-2">3D Badges</h3>
+                    <p class="text-sm text-gray-500">Animated proof of skills in 3D.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="profile-overlay" class="overlay">
+        <div class="max-w-5xl mx-auto pt-10">
+            <div class="flex justify-between items-center mb-10">
+                <h2 id="prof-name" class="text-4xl font-black italic">IDENTITY: <span class="text-blue-500">USER</span></h2>
+                <button onclick="closeOverlays()" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="glass-panel h-[400px] flex items-center justify-center">
+                    <canvas id="badge-canvas"></canvas>
+                </div>
+                <div class="space-y-6">
+                    <div class="glass-panel streak-glow flex justify-between items-center px-8 py-10">
+                        <span class="text-gray-400 font-bold uppercase">Streak</span>
+                        <span id="prof-streak" class="text-5xl font-black text-orange-500">🔥 14</span>
+                    </div>
+                    <div class="glass-panel flex justify-between items-center px-8 py-10">
+                        <span class="text-gray-400 font-bold uppercase">XP</span>
+                        <span id="prof-xp" class="text-5xl font-black text-blue-500">24,500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mentor-overlay" class="overlay">
+        <div class="max-w-6xl mx-auto pt-10">
+            <div class="flex justify-between items-center mb-10 text-center">
+                <h2 class="text-4xl font-black italic uppercase">The Architects</h2>
+                <button onclick="closeOverlays()" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div id="mentor-grid" class="grid md:grid-cols-3 lg:grid-cols-5 gap-6"></div>
+        </div>
+    </div>
+
+    <div id="leaderboard-overlay" class="overlay">
+        <div class="max-w-3xl mx-auto pt-10">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-4xl font-black italic uppercase">Global Ranks</h2>
+                <button onclick="closeOverlays()" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div id="leader-list" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <div id="chat-window" class="chat-container">
+        <div class="bg-blue-600 p-4 flex justify-between items-center">
+            <span id="chat-title" class="text-[10px] font-black uppercase">Neural AI</span>
+            <button onclick="toggleChat(false)"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+        <div id="chat-msgs" class="p-4 h-64 overflow-y-auto flex flex-col gap-3 text-xs"></div>
+        <div id="typing" class="px-4 py-1 text-[9px] text-blue-400 hidden italic">Processing...</div>
+        <div class="p-4 border-t border-white/10 flex gap-2">
+            <input type="text" id="chat-input" placeholder="Query code..." class="bg-transparent flex-1 outline-none text-xs">
+            <button onclick="sendMsg()" class="text-blue-500"><i data-lucide="send" class="w-4 h-4"></i></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

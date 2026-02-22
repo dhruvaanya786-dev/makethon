@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
+
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: #050810; margin: 0; }
+
+/* 🚀 CENTERED HYPERSPACE */
+#intro-overlay { position: fixed; inset: 0; z-index: 9999; background: black; display: flex; align-items: center; justify-content: center; }
+#starfield { position: absolute; inset: 0; }
+.intro-lx { font-size: 10rem; font-weight: 900; opacity: 0; transform: scale(0.5); z-index: 10; text-shadow: 0 0 50px rgba(59,130,246,0.6); }
+#welcome-msg { letter-spacing: 8px; font-weight: 800; font-size: 0.8rem; margin-top: 20px; text-transform: uppercase; z-index: 10; position: relative; }
+
+/* 🛠️ SIDEBAR */
+.sidebar { position: fixed; left: 0; top: 0; height: 100vh; width: 85px; background: rgba(11, 17, 32, 0.95); border-right: 1px solid rgba(255,255,255,0.1); z-index: 1000; display: flex; flex-direction: column; align-items: center; padding-top: 2rem; transform: translateX(-100%); }
+.profile-trigger { width: 52px; height: 52px; background: linear-gradient(135deg, #3b82f6, #9333ea); border-radius: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 800; box-shadow: 0 0 20px rgba(59,130,246,0.3); }
+.nav-icon { color: #475569; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: 0.3s; }
+.nav-icon:hover { color: #3b82f6; transform: translateX(5px); }
+.nav-label { font-size: 8px; font-weight: 800; text-transform: uppercase; }
+
+/* 🔥 STREAK GLOW */
+.streak-glow { border: 2px solid #f97316 !important; box-shadow: 0 0 30px rgba(249,115,22,0.3); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+
+/* 💎 PANELS & MODALS */
+#main-content { padding-left: 85px; }
+.overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(5, 8, 16, 0.98); backdrop-filter: blur(40px); display: none; padding: 4rem; overflow-y: auto; }
+.glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 2rem; transition: 0.3s; }
+.close-btn { background: rgba(255,255,255,0.1); padding: 0.5rem; border-radius: 50%; }
+
+/* 💬 CHAT BOX */
+.chat-container { position: fixed; bottom: 30px; right: 30px; width: 320px; background: #0b1120; border-radius: 24px; z-index: 3000; display: none; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+.robot-float { animation: float 4s infinite ease-in-out; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
